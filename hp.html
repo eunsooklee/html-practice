@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>hp.html</title>
+    <style>
+        /* 내부 css */
+    </style>
 </head>
 <body>
     <button onclick="f1('이름')">onclick</button>
@@ -13,18 +16,26 @@
         button onclick="f1(); f2();" 여러개일때 ; 필요
         ()안에 ""오류인 이유 앞에"와 연결돼서 "f1("이름")"일때 "f1("이후를 웹브라우저가 인식을 못한다.
     -->
+    <br>
     <button onclick="login()">로그인</button>
+    <br>
+    <input type="text" id="put">
+    <br>
+    <button id="myBtn">click</button>
 
     <!-- p{p$ 입니다}*5 + tab div{div$}*20 -->
     <p>p1 입니다</p>
     <p id="one">p2 입니다</p>
-    <p>p3 입니다</p>
+    <p id="two">p3 입니다</p>
     <p>p4 입니다</p>
     <p>p5 입니다</p>
 
+    <div style="width:100px; height:100px; border:1px solid violet;">box</div>
+    <div id="myDiv">box</div>
+
     <script>
 
-        let undefined; //변수를 선언만 하고 어떤 값도 넣지 않으면 undefined가 들어있다.
+        let undefined1; //변수를 선언만 하고 어떤 값도 넣지 않으면 undefined가 들어있다.
 
         let num = 10;
         let num2 = 20;
@@ -94,7 +105,7 @@
         //let ud=f1(); //console에 undefined가 출력되는 이유 함수에 return 값이 없어서
         //f1은 콘솔출력되는데 ud는 안되는 이유 : 의미 f1을 호출하고 return값을 ud에 반환
 
-        let buitinA = alert;
+        let buitinFunction = alert;
 
         //"abc"+1 = abc1 , +는 연결연산자 역할을 한다
 
@@ -103,8 +114,9 @@
             let isLogin = confirm("로그인하시겠습니까?");
             if(isLogin){
                 ID=prompt("아이디를 입력하세요");
+                console.log(ID);
             }
-            console.log(ID);
+            //console.log(ID);
         };
 
         document.querySelectorAll("p")[0].innerText="lee";
@@ -115,7 +127,35 @@
         document.querySelector("#one") != document.querySelector("p") 
         document.querySelector("p")는 p1만 출력한다 (?)
         */
+        document.querySelectorAll("p")[1].innerText=document.querySelector("#one").value;
+        // input의 값은 value, p의 값은 innerText
+
+        // 페이지 로딩 시점에 함수에서 자주 사용되는 값을 미리 얻어내서 변수에 담아 놓는다 value 값은 전역변수에 넣으면 페이지 로딩시에 할당된다.
+        // input 값은 문자로 반환된다 Number(document.querySelector("#num1").value
+
+        /*
+        이벤트 처리를 onXXX="" 속성을 사용해서 처리하면 global 변수(함수)가 필요하다
+        global 변수(함수)를 많이 만드는 것은 바람직하지 않다.
+        '이벤트 핸들러'는 앞에 'on'을 붙여 주고 이벤트에 대한 동작(함수)을 처리
+        <태그명 on이벤트 = 자바스크립트 코드> </태그명>
+        onclick 속성 대신 사용할 수 있는 방법
+        */
+        document.querySelector("#myBtn").addEventListener("click", function(){
+            document.querySelector("#two").innerText="onclick 속성 대신";
+        });
+        //addEventListener(string type/event name..click 등, function type/callback function=나중에 자동으로 호출되는 함수)
+
+        let div1=document.querySelector("#myDiv");
+        div1.style.width="100px"; // css 를 적용할 요소에 style 속성을 이용해서 직접 css를 작성
+        div1.style.height="100px"; // 이러한 css를 인라인 css
+        div1.style.border="1px solid violet"; // 인라인 css는 내부 css 보다 우선시 된다.
+        //여러 단어로 조합된 css property는 - 대신에 다음 단어의 첫글자를 대문자로 작성하면 된다.
+        div1.style.backgroundColor="pink"; //console로 바꾸는 것도 가능
+
         
+
+
+
     </script>
     
 </body>
