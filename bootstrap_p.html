@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bootstrap_p.html</title>
+    <!-- bootstrap css 로딩하기 -->
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <!-- bootstrap javascript 로딩하기 -->
+    <script src="js/bootstrap.bundle.js"></script>
+
+    <style>
+        .selector2 p{ /* 띄어 쓰기 : 자손 선택 */
+			color:lavender;
+		}
+        
+        /* .constiner 의 자식 중에서 p 선택 */
+		.selector2 > p{
+			background-color: mintcream;
+		}
+
+		/* 조금 더 구체적으로 선택 */
+		.selector2 > .selector > p{
+			font-weight: bold;
+		}
+
+        /* 모두 선택 */
+		*{
+			font-size: 20px;
+		}
+
+		/* , 로 구분해서 다중 선택 */
+		h2, .selector2, .selector{
+			font-style: oblique;
+		}
+
+        /* 선택자의 가중치(구체적)가 동일 하다면 나중에 정의한 css 가 적용된다. 11점 */
+        div.selector{
+			padding: 10px;
+			background-color:lavenderblush;
+			color: #fff;
+            font-style:normal
+		}
+        /*
+			[ css 가중치 정리 ]
+
+			1. css 는 선택자가 상세할수록 가중치가 크다.
+			2. 가중치가 같으면 나중에 정의한 css 가 적용된다.
+
+			요소명 선택자 가중치 : 1점
+			클래스 선택자 가중치 : 10점
+			아이디 선택자 가중치 : 100점
+
+			인라인 css 가중치 : 1000 점
+			!important 가중치 : 10000점 
+		*/
+    </style>
+</head>
+<body>
+    <div class="selector2">
+        <p> 띄어 쓰기는 자손 선택</p>
+        <div class="selector">
+            <h2>선택자를 붙여서 쓰면 and 조건으로 문서를 선택한다.</h2>
+            <p>div.a.b => 요소명이 div 이고 클래스명이 a 와 b .a.b => 클래스명이 a 와 b</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+          <div class="col">
+            First in DOM, no order applied
+          </div>
+          <div class="col order-5">
+            Second in DOM, with a larger order
+          </div>
+          <div class="col order-1">
+            Third in DOM, with an order of 1
+          </div>
+        </div>
+      </div>
+</body>
+</html>
